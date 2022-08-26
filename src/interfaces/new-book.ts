@@ -17,35 +17,35 @@ import { NewBookCategory } from './new-book-category';
  * @export
  * @interface NewBook
  */
-export interface NewBook {
+export interface newBook {
     /**
      * 
      * @type {string}
      * @memberof NewBook
      */
-    title?: string;
+    title: string;
     /**
      * 
      * @type {string}
      * @memberof NewBook
      */
-    author?: string;
+    author: string;
     /**
      * 
      * @type {number}
      * @memberof NewBook
      */
-    pages?: number;
+    pages: number;
     /**
      * 
      * @type {string}
      * @memberof NewBook
      */
-    synopsis?: string;
+    synopsis: string;
     /**
      * 
      * @type {NewBookCategory}
      * @memberof NewBook
      */
-    category?: NewBookCategory;
+    category: NewBookCategory;
 }

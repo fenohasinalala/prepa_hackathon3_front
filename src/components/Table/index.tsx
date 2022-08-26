@@ -1,13 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
-import { Interface } from "readline";
-import { findConfigFile, idText, Type } from "typescript";
-import { object } from "yup";
-import { NumberLocale } from "yup/lib/locale";
 import { backgroundColor, newBook, APIUrl } from "../../constants";
 import { category, book } from "../../interfaces";
 import Formulaire from "../formulaire";
+import Load from "../loading";
 import Arrow from "./Arrow";
 import { LigneList } from "./LineTable";
 import HorizontalPagination from "./Pagination";
@@ -90,20 +87,23 @@ export const TableConstructor: React.FC<props> = (props) => {
   }
 
 
-
+  const [activTri,setActivTri]=useState<boolean[]>([]);
+  const [activLoading,setActivLoading]=useState<boolean>(true);
+  const finishLoadingt = ()=>{setActivLoading(false)};
   const [dataBook, setDataBook] = useState<book[]>([newBook]);
   const [loagBook, setLoagBook] = useState<number>(0);
   useEffect(() => {
+    setActivLoading(true)
     axios({
       url: APIUrl+"/books"+"?"+"page="+(page-1)+"&page_size="+valuNumbur,
     })
       .then((response) => {
-        setDataBook(response.data.content);
-        console.log(dataBook);
-        console.log(dataBook[0]==[newBook][0]);
+        setDataBook(response.data);
+        console.log(response.data);
+        console.log(dataBook==[newBook]);
         
         console.log("SUCSSSSSESSSSSS");
-        
+        setActivLoading(false);
       })
       .catch((error) => {
         console.log("error in GET Books :");
@@ -125,7 +125,7 @@ export const TableConstructor: React.FC<props> = (props) => {
   const [tri, setTri] = useState("");
   let items = [newBook];
 
-    //items = dataBook;
+    items = dataBook;
 
   const colloneName: string[] = props.colloneName;
   const keFocus:[number, number | null, number | null][] = props.keFocus
@@ -138,7 +138,6 @@ export const TableConstructor: React.FC<props> = (props) => {
 
 
   
-  const [activTri,setActivTri]=useState<boolean[]>([])
 
 
  
@@ -179,7 +178,7 @@ export const TableConstructor: React.FC<props> = (props) => {
           </label>
         </div>
         <div className="dataTable-search">
-          <Button variant="primary" onClick={()=>{setActivUpdatePost(true)}} className={backgroundColor}>add</Button>
+          <Button variant="primary" onClick={()=>{setActivUpdatePost(true)}} className={backgroundColor}>Ajouter</Button>
         </div>
       </div>
       <div className="dataTable-container p-2 bd-highlight">
@@ -238,7 +237,7 @@ export const TableConstructor: React.FC<props> = (props) => {
       </div>
       <div className="dataTable-bottom p-2">
         <div className="dataTable-info">
-          {"Morte " +
+          {"Motre " +
             (page * valuNumbur - valuNumbur + 1) +
             " à " +
             Math.min(page * valuNumbur, items.length) +
@@ -257,6 +256,7 @@ export const TableConstructor: React.FC<props> = (props) => {
       dataCompose = {props.dataCompose} //:category[];
       change = {4} //:any;
     />:<></>}
+    {activLoading?Load(finishLoadingt):<></>}
     </div>
   );
 };

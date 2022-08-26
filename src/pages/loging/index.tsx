@@ -18,7 +18,7 @@ function Loging() {
         <div className="contereAllLoginb">
             
 
-            <div className='titleLoging'>{"Mybar.mg-Cocktail & Lounge"}</div>
+            <div className='titleLoging'>{"Connexion"}</div>
             <Form className="contereLoginb container">
                 <Form.Group className="row" controlId="formBasicText">
                     <Form.Label className="col-3">Identifiant:</Form.Label>
@@ -27,25 +27,16 @@ function Loging() {
 
                 <Form.Group className="row" controlId="formBasicPassword">
                     <Form.Label className="col-3">Mot de passe:</Form.Label>
-                    <Form.Control className="col-6" type="password" placeholder="Password" />
+                    <Form.Control className="col-6" type="password" placeholder="Mots de passe" />
                 </Form.Group>
 
 
                 <Form.Group className="row justify-content-center" controlId="bouttonFunction1">
-                    <Button className="col-6" variant="primary" href="http://localhost:3000/bar/cocktails" type="submit">
+                    <Button className="col-6" variant="primary" href={ProjectUrl+"/BooksClass"} type="submit">
                         CONNEXION
                     </Button>
                 </Form.Group>
 
-                <Form.Group className="row justify-content-center" controlId="bouttonFunction1">
-                    ou
-                </Form.Group>
-
-                <Form.Group className="row justify-content-center" controlId="bouttonFunction2">
-                    <Button className="col-6" variant="primary" href="http://localhost:3000/" type="submit">
-                        VOIR LES COCKTAILS
-                    </Button>
-                </Form.Group>
 
             </Form>
         </div>

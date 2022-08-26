@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavbarHeader, TableConstructor } from '../components';
-import { newBook, ProjectUrl } from '../constants';
+import { ProjectUrl } from '../constants';
 import { postPutDeletRequest } from '../hoooks';
 import { category, book } from '../interfaces';
 
@@ -25,7 +25,7 @@ const BooksClass: React.FC<props> = (props) => {
             items={props.items}
             actualisationAllData={props.actualisationAllData}
             setActivUpdat={props.setActivUpdat}
-            colloneName= {["Tytre","Auteur",'Catégorie','Nombre de page']}
+            colloneName= {["Titre","Auteur",'Catégorie','Nombre de page']}
             keFocus={[[1,null,null],[2,null,null],[5,1,null],[3,null,null]]}
             bouttons={[
               {name:"Emprunter",method:((book:any)=>{postPutDeletRequest("APIUrl","books",book.data,1,false,false,book.finishLoadingt)})},

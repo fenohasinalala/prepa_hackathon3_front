@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap';
 import { backgroundColor, APIUrl, variant } from '../../constants';
 import { postPutDeletRequest } from '../../hoooks';
 import { book, category } from '../../interfaces';
+import ConfirmEmprunt from '../comfirmationEmprunter';
 import Formulaire from '../formulaire';
 import Load from '../loading';
 
@@ -31,21 +32,24 @@ export const LigneList:React.FC<props> = (props) => {
 
 
     const [activLoading,setActivLoading]= useState<boolean>(false)
+    const startSctivLoading =()=> setActivLoading(true);
     const finishLoadingt:()=>void = ()=>{
         props.actualisationAllData();
         const temer1 = setInterval(()=>{
-            setActivUpdatePut(false);
+            setActivModif(false);
             setActivLoading(false);
         },500)
     }
-    const [activUpdatePut,setActivUpdatePut]= useState<boolean>(false)
+    const [activModif,setActivModif]= useState<boolean>(false)
     const finishUpdatPut:()=>void = ()=>{
         props.actualisationAllData();
         const temer1 = setInterval(()=>{
-            setActivUpdatePut(false);
+            setActivModif(false);
             setActivLoading(false);
         },500)
     }
+
+    
 
     return (
         <>
@@ -58,22 +62,22 @@ export const LigneList:React.FC<props> = (props) => {
                     <td  className="center">
                         <div className="btn-group mr-2" role="group" aria-label="First group">
                             {bouttons.map((boutton)=>{return(
-                                <button onClick={()=>{
-                                    setActivLoading(true);
-                                    /*boutton.method({data:item,finishLoadingt:finishLoadingt});*/
-                                }} type="button" className={"btn btn-"+variant}>{boutton.name}</button>
+                                ((boutton.name=="Emprunter"&&item.status=="Disponible")||(boutton.name!="Emprunter"&&item.status!="Disponible"))?
+                                <button onClick={()=>{setActivModif(true);}} type="button" className={"btn btn-"+variant}>{boutton.name}</button>:
+                                <button onClick={()=>{setActivModif(true);}} type="button" disabled className={"btn btn-"+variant}>{boutton.name}</button>
                             )})}
                         </div>
                     </td>:<></>
                 }
             </tr>
-            {activUpdatePut?
-            <Formulaire
-              book = {item}
-              id = {item.idBook}
-              fermetur = {finishUpdatPut}
-              dataCompose = {props.dataCompose}
-              change = {4}
+            {activModif?
+            <ConfirmEmprunt
+                book = {item}
+                finish = {()=>{setActivModif(false)}}
+                function = {()=>{
+                    bouttons!=null?bouttons[0].method({data:item,finishLoadingt:finishLoadingt,startSctivLoading:startSctivLoading}):console.log("")
+                }
+            }
             />:<></>}
 
             {activLoading?Load(finishLoadingt):<></>}

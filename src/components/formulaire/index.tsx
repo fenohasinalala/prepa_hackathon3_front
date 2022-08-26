@@ -26,36 +26,38 @@ const Formulaire: React.FC<props> = (props) => {
           setActiv(activ==false)
       }
   },[change]);
-  
-  const phoneRegExp =
-    /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
 
   const formik = useFormik({
     initialValues: {
-      nameDrink: (props.book==undefined?"":props.book.title),
-      prix: (props.book==undefined?"":""+props.book.pages),
-
+      nameBook: (props.book==undefined?"":props.book.title),
+      author: (props.book==undefined?"":""+props.book.author),
+      pages: (props.book==undefined?"":""+props.book.pages),
       categorie: (props.book==undefined?"":props.book.category?.nameCategory),
+      synopsis: (props.book==undefined?"":""+props.book.synopsis),
     },
     validationSchema: Yup.object({
-      nameDrink: Yup.string()
-        .max(50, "Caractère inferieur ou egale à 50")
+      nameBook: Yup.string()
+        .max(100, "Caractère inferieur ou egale à 100")
         .required("Requis"),
-      prix: Yup.number()
-        .max(1000000, "Prix trop élevé")
+      author: Yup.string()
+        .max(100, "Caractère inferieur ou egale à 100")
+        .required("Requis"),
+      pages: Yup.number()
+        .max(1000000, "Page trop élevé")
         .required("Requis")
         .typeError('Saisissez des chiffres'),
-
+      synopsis: Yup.string()
+        .max(1000, "trop long"),
       categorie: Yup.string()
-        .max(50, "Caractère inferieur ou egale à 50")
+        .max(100, "Caractère inferieur ou egale à 100")
         .required("Requis"),
     }),
     onSubmit: (values) => {
       console.log(values);
       try {
         axios[props.id==null?"post":"put"](APIUrl+"/books"+(props.id==null?"":"/"+props.id), {
-          nameDrink: values.nameDrink,
-          priceDrink: values.prix,
+          nameBook: values.nameBook,
+          author: values.author,
           category: {
             idCategory: values.categorie==props.dataCompose[0].nameCategory?props.dataCompose[0].idCategory:
             values.categorie==props.dataCompose[1].nameCategory?props.dataCompose[1].idCategory:
@@ -84,7 +86,7 @@ const Formulaire: React.FC<props> = (props) => {
               X
             </button>
             <div className="titels">
-              {'      '}<h2>FORMULAIRE BOISSON</h2>
+              {'      '}<h2>FORMULAIRE LIVRE</h2>
             </div>
             <form
               action=""
@@ -93,35 +95,65 @@ const Formulaire: React.FC<props> = (props) => {
               onReset={formik.handleReset}
             >
               <div className="form_contenu">
-                <label htmlFor="id" className="nameDrink">
-                  Nom
+                <label htmlFor="id" className="nameBook">
+                  Titre
                 </label>
                 <input
-                  id="nameDrink"
+                  id="nameBook"
                   type="text"
                   className="input_formulaire"
-                  placeholder="Nom de Boisson"
-                  value={formik.values.nameDrink}
+                  placeholder="Titre du Livre"
+                  value={formik.values.nameBook}
                   onChange={formik.handleChange}
                 />
-                {formik.errors.nameDrink ? (
-                  <p> {formik.errors.nameDrink} </p>
+                {formik.errors.nameBook ? (
+                  <p> {formik.errors.nameBook} </p>
                 ) : null}
               </div>
 
               <div className="form_contenu">
-                <label htmlFor="id" className="prix">
-                  Prix
+                <label htmlFor="id" className="author">
+                  Auteur
                 </label>
                 <input
-                  id="prix"
+                  id="author"
                   type="text"
                   className="input_formulaire"
                   placeholder="Prix"
-                  value={formik.values.prix}
+                  value={formik.values.author}
                   onChange={formik.handleChange}
                 />
-                {formik.errors.prix ? <p> {formik.errors.prix} </p> : null}
+                {formik.errors.author ? <p> {formik.errors.author} </p> : null}
+              </div>
+
+              <div className="form_contenu">
+                <label htmlFor="id" className="page">
+                  Pages
+                </label>
+                <input
+                  id="author"
+                  type="page"
+                  className="input_formulaire"
+                  placeholder="Le nombre de page"
+                  value={formik.values.pages}
+                  onChange={formik.handleChange}
+                />
+                {formik.errors.author ? <p> {formik.errors.author} </p> : null}
+              </div>
+
+              <div className="form_contenu">
+                <label htmlFor="id" className="author">
+                synopsis
+                </label>
+                <input
+                  id="author"
+                  type="textarea"
+                  className="input_formulaire"
+                  placeholder="synopsis"
+                  value={formik.values.synopsis}
+                  onChange={formik.handleChange}
+                />
+                {formik.errors.author ? <p> {formik.errors.author} </p> : null}
               </div>
 
               <div className="form_contenu">

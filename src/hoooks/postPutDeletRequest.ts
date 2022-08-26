@@ -7,14 +7,14 @@ export const postPutDeletRequest = (domain:string,endPoint:string,body:Object,id
           finishUpdate();
           console.log("It's activ");
           clearInterval(timer);
-        },500)
+        },100)
       } catch (error) {
         console.log(error);
         const timer=setInterval(()=>{
           finishUpdate();
           console.log("It's activ");
           clearInterval(timer);
-        },500)
+        },100)
       }
 
 
