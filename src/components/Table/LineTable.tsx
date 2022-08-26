@@ -46,7 +46,7 @@ export const LigneList:React.FC<props> = (props) => {
         const temer1 = setInterval(()=>{
             setActivModif(false);
             setActivLoading(false);
-        },500)
+        },100)
     }
 
     
@@ -75,7 +75,7 @@ export const LigneList:React.FC<props> = (props) => {
                 book = {item}
                 finish = {()=>{setActivModif(false)}}
                 function = {()=>{
-                    bouttons!=null?bouttons[0].method({data:item,finishLoadingt:finishLoadingt,startSctivLoading:startSctivLoading}):console.log("")
+                    bouttons!=null?bouttons[0].method({data:item,finishLoadingt:setActivModif(false),startSctivLoading:startSctivLoading}):console.log("")
                 }
             }
             />:<></>}

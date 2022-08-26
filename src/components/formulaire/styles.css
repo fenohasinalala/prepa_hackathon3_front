@@ -24,9 +24,12 @@
 
  .form_fondsDrink {
    z-index: 1100;
-   display: block;
-   height: 540px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
    width: 640px;
+   padding-bottom: 50px;
+   padding-top: 50px;
    position: fixed;
    top: 3em;
    left: 45%;
@@ -46,12 +49,16 @@
  .form_class {
    padding:1em 2em;
    background-color: white;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
  }
 
 
  .form_contenu {
-   min-height: 85px;
-
+    min-height: 80px;
+    width: 400px;
+    
  }
 
  .form_contenu p {
@@ -111,6 +118,8 @@
    white-space: nowrap;
  }
 
+
+
  .btn_type:hover {
    background-color: #0d6efd;
    color: white;
@@ -129,8 +138,7 @@
  }
 
  .btn_envoie {
-   position: relative;
-   bottom: -15px;
+   align-self: center;
  }
 
  .btn_cancel {
@@ -146,4 +154,9 @@
 
  .btn_cancel:hover {
    cursor: pointer;
+ }
+
+
+ .bigText{
+  unicode-bidi: bidi-override !important;
  }

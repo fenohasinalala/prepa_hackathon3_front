@@ -1,10 +1,10 @@
 import "./styles.css";
-import { useFormik } from "formik";
+import { Field, useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { category, book } from "../../interfaces";
-import { APIUrl } from "../../constants";
+import { APIUrl, backgroundColor } from "../../constants";
 interface props {
   book: book | undefined;
   id:number | null;
@@ -16,6 +16,8 @@ interface props {
 const Formulaire: React.FC<props> = (props) => {
   const fermerFormulaire=()=>{setInterval(()=>{props.fermetur()},500); };
   const change = props.change;
+  const phoneRegExp =
+    /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
   
   const [activ,setActiv] = useState(true)
   const [number,setNumber] = useState(0)
@@ -32,7 +34,7 @@ const Formulaire: React.FC<props> = (props) => {
       nameBook: (props.book==undefined?"":props.book.title),
       author: (props.book==undefined?"":""+props.book.author),
       pages: (props.book==undefined?"":""+props.book.pages),
-      categorie: (props.book==undefined?"":props.book.category?.nameCategory),
+      categorie: (props.book==undefined?"Comedy":props.book.category?.nameCategory),
       synopsis: (props.book==undefined?"":""+props.book.synopsis),
     },
     validationSchema: Yup.object({
@@ -43,7 +45,7 @@ const Formulaire: React.FC<props> = (props) => {
         .max(100, "Caractère inferieur ou egale à 100")
         .required("Requis"),
       pages: Yup.number()
-        .max(1000000, "Page trop élevé")
+        .max(1000000, "Pages trop élevé")
         .required("Requis")
         .typeError('Saisissez des chiffres'),
       synopsis: Yup.string()
@@ -56,20 +58,18 @@ const Formulaire: React.FC<props> = (props) => {
       console.log(values);
       try {
         axios[props.id==null?"post":"put"](APIUrl+"/books"+(props.id==null?"":"/"+props.id), {
-          nameBook: values.nameBook,
+          title: values.nameBook,
           author: values.author,
+          pages: values.pages,
+          synopsis: values.synopsis,
           category: {
-            idCategory: values.categorie==props.dataCompose[0].nameCategory?props.dataCompose[0].idCategory:
-            values.categorie==props.dataCompose[1].nameCategory?props.dataCompose[1].idCategory:
-            values.categorie==props.dataCompose[2].nameCategory?props.dataCompose[2].idCategory:
-            values.categorie==props.dataCompose[3].nameCategory?props.dataCompose[3].idCategory:
-            0
-            , // A VOIRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
-            nameCategory: values.categorie // A VOIRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+            idCategory: props.dataCompose.find(e=>e.nameCategory==values.categorie)?.idCategory
           }
-        }).then((response)=>{fermerFormulaire()});
+        })
+        .then((response)=>{fermerFormulaire()})
+        .catch((error)=>{fermerFormulaire()})
+        ;
       } catch (error) {
-        console.log(error);
         fermerFormulaire();
       }
     },
@@ -95,7 +95,7 @@ const Formulaire: React.FC<props> = (props) => {
               onReset={formik.handleReset}
             >
               <div className="form_contenu">
-                <label htmlFor="id" className="nameBook">
+                <label htmlFor="id" className="label_input">
                   Titre
                 </label>
                 <input
@@ -112,14 +112,14 @@ const Formulaire: React.FC<props> = (props) => {
               </div>
 
               <div className="form_contenu">
-                <label htmlFor="id" className="author">
+                <label htmlFor="id" className="label_input">
                   Auteur
                 </label>
                 <input
                   id="author"
                   type="text"
                   className="input_formulaire"
-                  placeholder="Prix"
+                  placeholder="Auteur"
                   value={formik.values.author}
                   onChange={formik.handleChange}
                 />
@@ -127,37 +127,38 @@ const Formulaire: React.FC<props> = (props) => {
               </div>
 
               <div className="form_contenu">
-                <label htmlFor="id" className="page">
+                <label htmlFor="id" className="label_input">
                   Pages
                 </label>
                 <input
-                  id="author"
-                  type="page"
+                  id="pages"
+                  type="text"
                   className="input_formulaire"
                   placeholder="Le nombre de page"
                   value={formik.values.pages}
                   onChange={formik.handleChange}
                 />
-                {formik.errors.author ? <p> {formik.errors.author} </p> : null}
+                {formik.errors.pages ? <p> {formik.errors.pages} </p> : null}
               </div>
 
               <div className="form_contenu">
-                <label htmlFor="id" className="author">
+                <label htmlFor="id" className="label_input">
                 synopsis
                 </label>
                 <input
-                  id="author"
+                  id="synopsis"
                   type="textarea"
-                  className="input_formulaire"
+                  className="input_formulaire bigText"
                   placeholder="synopsis"
                   value={formik.values.synopsis}
                   onChange={formik.handleChange}
                 />
-                {formik.errors.author ? <p> {formik.errors.author} </p> : null}
+                
+                {formik.errors.synopsis ? <p> {formik.errors.synopsis} </p> : null}
               </div>
 
               <div className="form_contenu">
-                <label htmlFor="id" className="categorie">
+                <label htmlFor="id" className="label_input">
                   Catégorie
                 </label>
                 <select
@@ -177,7 +178,7 @@ const Formulaire: React.FC<props> = (props) => {
                   <p> {formik.errors.categorie} </p>
                 ) : null}
               </div>
-              <button type="submit" className="btn_envoie btn_type">
+              <button type="submit" className={"btn_envoie btn_type " + backgroundColor}>
                 {props.id==null?"Ajouter":"Modifier"}
               </button>
             </form>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProjectUrl } from '../../constants';
+import { APIUrl, ProjectUrl } from '../../constants';
 
 const NavbarHeader = (navList:{name:string,href:string}[],title:{name:string,href:string}) => {
     return (
@@ -19,7 +19,7 @@ const NavbarHeader = (navList:{name:string,href:string}[],title:{name:string,hre
                     )})}
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
-                <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Se déconnecter</button>
+                <button className="btn btn-outline-success my-2 my-sm-0" formAction={ProjectUrl+"/"} type="submit">Se déconnecter</button>
                 </form>
             </div>
             </nav>

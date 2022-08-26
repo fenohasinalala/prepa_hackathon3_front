@@ -14,7 +14,7 @@ const ConfirmEmprunt: React.FC<props> = (props) => {
 
   return (
     <>
-      <Modal show={true} onHide={props.function}>
+      <Modal show={true} onHide={props.finish}>
         <Modal.Header closeButton>
           <Modal.Title>Confirmation des changements</Modal.Title>
         </Modal.Header>
