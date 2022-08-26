@@ -1,0 +1,16 @@
+.contereLoginb{
+  width: 60vw;
+}
+
+.contereAllLoginb{
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.titleLoging{
+  font-size: larger;
+  margin-bottom: 1em;
+}
