@@ -23,6 +23,7 @@ const BooksClass: React.FC<props> = (props) => {
               ],
               {name:"Gestion de bibliothèque",href: (ProjectUrl + "/")}
           )}
+          <div className='liste_tab'>
           <TableConstructor 
             items={props.items}
             actualisationAllData={props.actualisationAllData}
@@ -36,6 +37,7 @@ const BooksClass: React.FC<props> = (props) => {
             dataCompose={props.dataCompose}
             title={"Liste des Livres"}
           />
+          </div>
         </>
     );
 };
