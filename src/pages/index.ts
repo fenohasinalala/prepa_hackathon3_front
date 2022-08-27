@@ -1,6 +1,6 @@
 
 import BooksClass from "./BooksClass";
-import Loging from "./loging";
+import Login from "./login";
 import Ranking from "./Ranking";
 
 
@@ -9,5 +9,5 @@ import Ranking from "./Ranking";
 
 
 
-export {Ranking,Loging,BooksClass}
+export {Ranking,Login,BooksClass}
 

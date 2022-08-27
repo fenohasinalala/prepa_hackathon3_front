@@ -8,3 +8,4 @@ export * from './new-booking-book';
 export * from './new-category';
 export * from './new-user';
 export * from './user';
+export * from './user.type';

@@ -1,15 +1,61 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { APIUrl, ProjectUrl } from '../../constants';
+import { getCurrentUser, logout } from '../../hoooks';
+import EventBus from '../../hoooks/EventBus';
+import { IUser } from '../../interfaces';
 import "./style.css";
 
 const NavbarHeader = (navList:{name:string,href:string}[],title:{name:string,href:string}) => {
+    const [currentUser, setCurrentUser] = useState<IUser | undefined>(undefined);
+
+    useEffect(() => {
+      const user = getCurrentUser();
+  
+      if (user) {
+        setCurrentUser(user);
+      }
+  
+      EventBus.on("logout", logOut);
+  
+      return () => {
+        EventBus.remove("logout", logOut);
+      };
+    }, []);
+  
+    const logOut = () => {
+      logout();
+      setCurrentUser(undefined);
+    };
+
+
+
+
+
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-light bg-light nav_perso">
             <a className="navbar-brand" href={title.href}> {title.name} </a>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button 
+                className="navbar-toggler"
+                type="button"
+                data-toggle="collapse" 
+                data-target="#navbarSupportedContent" 
+                aria-controls="navbarSupportedContent" 
+                aria-expanded="false" 
+                aria-label="Toggle navigation"
+            >
                 <span className="navbar-toggler-icon"></span>
             </button>
+
+
+
+
+
+
+
+
+
 
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
@@ -20,7 +66,34 @@ const NavbarHeader = (navList:{name:string,href:string}[],title:{name:string,hre
                     )})}
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
-                <button className="btn btn-outline-success my-2 my-sm-0 custom_color_logout" formAction={ProjectUrl+"/"} type="submit">Se déconnecter</button>
+                {currentUser ? (
+          <div className="navbar-nav ml-auto">
+            <li className="nav-item my-2 my-sm-0 custom_color_logout">
+              <Link to={"/user"} className="nav-link">
+                {currentUser.username}
+              </Link>
+            </li>
+            <li className="nav-item my-2 my-sm-0 custom_color_logout">
+              <a href="/login" className="nav-link" onClick={logOut}>
+                Se déconnecter
+              </a>
+            </li>
+          </div>
+        ) : (
+          <div className="navbar-nav ml-auto">
+            <li className="nav-item my-2 my-sm-0 custom_color_logout" >
+              <Link to={"/login"} className="nav-link">
+                Se connecter
+              </Link>
+            </li>
+
+            <li className="nav-item my-2 my-sm-0 custom_color_logout">
+              <Link to={"/register"} className="nav-link">
+                S'inscrir
+              </Link>
+            </li>
+          </div>
+        )}
                 </form>
             </div>
             </nav>
@@ -31,4 +104,12 @@ const NavbarHeader = (navList:{name:string,href:string}[],title:{name:string,hre
 export default NavbarHeader;
 
 
+
+function setShowModeratorBoard(arg0: any) {
+    throw new Error('Function not implemented.');
+}
+
+function setShowAdminBoard(arg0: any) {
+    throw new Error('Function not implemented.');
+}
 

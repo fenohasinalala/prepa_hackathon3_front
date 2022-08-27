@@ -4,6 +4,7 @@ import Spinner from 'react-bootstrap/esm/Spinner';
 import { backgroundColor } from '../../constants';
 import './load.css'
 
+
 const Load = (FinishLoading:()=>void) => {
     return(
         <>
