@@ -178,7 +178,7 @@ export const TableConstructor: React.FC<props> = (props) => {
           </label>
         </div>
         <div className="dataTable-search">
-          <Button variant="primary" onClick={()=>{setActivUpdatePost(true)}} className={backgroundColor}>Ajouter</Button>
+          <Button variant="primary" onClick={()=>{setActivUpdatePost(true)}} className="custom_color">Ajouter</Button>
         </div>
       </div>
       <div className="dataTable-container p-2 bd-highlight">

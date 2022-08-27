@@ -63,8 +63,8 @@ export const LigneList:React.FC<props> = (props) => {
                         <div className="btn-group mr-2" role="group" aria-label="First group">
                             {bouttons.map((boutton)=>{return(
                                 ((boutton.name=="Emprunter"&&item.status=="Disponible")||(boutton.name!="Emprunter"&&item.status!="Disponible"))?
-                                <button onClick={()=>{setActivModif(true);}} type="button" className={"btn btn-"+variant}>{boutton.name}</button>:
-                                <button onClick={()=>{setActivModif(true);}} type="button" disabled className={"btn btn-"+variant}>{boutton.name}</button>
+                                <button onClick={()=>{setActivModif(true);}} type="button" className={"btn custom_color_1"}>{boutton.name}</button>:
+                                <button onClick={()=>{setActivModif(true);}} type="button" disabled className={"btn custom_color_2"}>{boutton.name}</button>
                             )})}
                         </div>
                     </td>:<></>

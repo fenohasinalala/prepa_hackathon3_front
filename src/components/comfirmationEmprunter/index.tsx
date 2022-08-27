@@ -27,11 +27,11 @@ const ConfirmEmprunt: React.FC<props> = (props) => {
 
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={props.finish}>
-            Fermer
+          <Button variant="secondary" className='custom_color_refuse' onClick={props.finish}>
+            Annuler
           </Button> 
-          <Button variant="primary" onClick={props.function}>
-            Confirmer
+          <Button variant="primary" className='custom_color_accept' onClick={props.function}>
+            Accepter
           </Button>
         </Modal.Footer>
       </Modal>

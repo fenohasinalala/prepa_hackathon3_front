@@ -1,6 +1,4 @@
-.contereLoginb{
-  width: 60vw;
-}
+
 
 .contereAllLoginb{
   width: 100vw;
@@ -11,6 +9,52 @@
 }
 
 .titleLoging{
-  font-size: larger;
+  font-weight: bolder!important;
+  margin-top: 1.5em;
   margin-bottom: 1em;
+  display: flex;
+  justify-content: center;
+}
+
+.connexion{
+  max-width: 640px;
+  width: 40em;
+  height: 20em;
+  padding: 1em;
+  /*background-color: rgb(236, 236, 236);*/
+  /*background-color: #4c5463;*/
+  background-color: #ebeced;
+        position: absolute; /*Can also be `fixed`*/
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        /*Solves a problem in which the content is being cut when the div is smaller than its' wrapper:*/
+        max-width: 100%;
+        max-height: 100%;
+        overflow: auto;
+  border-radius: 1em;
+  box-shadow: rgba(7, 7, 7, 0.322) 0 8px 24px 16px;
+}
+
+.attribut_input{
+  /*display: table-cell;*/
+  padding-top: 7px;
+  font-weight: bolder;
+}
+
+
+.custom_color{
+  background-color: #84817E;
+  border-color: #84817E;
+}
+.custom_color:hover{
+  background-color: #A29787;
+  border-color: #A29787;
+}
+
+.custom_color_input:focus{
+  box-shadow: rgba(116, 102, 41, 0.158) 2px 2px 2px 0px;
+  border-color: #A29787;
 }

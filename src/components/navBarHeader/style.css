@@ -5,12 +5,12 @@
   }
   
   
-  .custom_color{
+  .custom_color_logout{
     background-color: #a53d3d;
     border-color: #a53d3d;
     color: white;
   }
-  .custom_color:hover{
+  .custom_color_logout:hover{
     background-color: #974444;
     border-color: #974444;
     color: white;

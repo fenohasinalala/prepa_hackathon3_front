@@ -16,6 +16,7 @@ interface props{
 const BooksClass: React.FC<props> = (props) => {
     return (
         <>
+        <div className='background_gray' >
           {NavbarHeader(
               [
                   {name:"Liste des livres",href: (ProjectUrl + "/BooksClass")},
@@ -37,6 +38,7 @@ const BooksClass: React.FC<props> = (props) => {
             dataCompose={props.dataCompose}
             title={"Liste des Livres"}
           />
+          </div>
           </div>
         </>
     );

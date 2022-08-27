@@ -5,4 +5,45 @@
 .modal-content{
   width: 50em!important;
   right: 24%!important;
+  /*left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;*/
+}
+
+
+.custom_color_accept{
+  background-color: #84817E;
+  border-color: #84817E;
+  color: white;
+}
+.custom_color_accept:hover{
+  background-color: #A29787;
+  border-color: #A29787;
+  color: white;
+}
+.custom_color_accept:focus{
+  background-color: #A29787;
+  border-color: #A29787;
+  color: white;
+  box-shadow: none;
+}
+
+
+.custom_color_refuse{
+  background-color: #a53d3d;
+  border-color: #a53d3d;
+  color: white;
+}
+.custom_color_refuse:hover{
+  background-color: #974444;
+  border-color: #974444;
+  color: white;
+}
+.custom_color_refuse:focus{
+  background-color: #974444;
+  border-color: #974444;
+  color: white;
+  box-shadow: none;
 }

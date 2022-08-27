@@ -20,7 +20,7 @@ const NavbarHeader = (navList:{name:string,href:string}[],title:{name:string,hre
                     )})}
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
-                <button className="btn btn-outline-success my-2 my-sm-0 custom_color" formAction={ProjectUrl+"/"} type="submit">Se déconnecter</button>
+                <button className="btn btn-outline-success my-2 my-sm-0 custom_color_logout" formAction={ProjectUrl+"/"} type="submit">Se déconnecter</button>
                 </form>
             </div>
             </nav>
