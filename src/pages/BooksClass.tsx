@@ -3,6 +3,8 @@ import { NavbarHeader, TableConstructor } from '../components';
 import { ProjectUrl } from '../constants';
 import { postPutDeletRequest } from '../hoooks';
 import { category, book } from '../interfaces';
+import "./style.css";
+
 
 interface props{
     items: book[];
@@ -32,7 +34,7 @@ const BooksClass: React.FC<props> = (props) => {
               {name:"Rendre",method:((book:any)=>{postPutDeletRequest("APIUrl","books",book.data,1,false,false,book.finishLoadingt)})},
             ]}
             dataCompose={props.dataCompose}
-            title={"Classement des livres par nombre d’emprunts"}
+            title={"Liste des Livres"}
           />
         </>
     );

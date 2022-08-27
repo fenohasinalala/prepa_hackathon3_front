@@ -1,0 +1,43 @@
+.attribut_input{
+    /*display: table-cell;*/
+    padding-top: 7px;
+    font-weight: bolder;
+  }
+  
+  
+  .custom_color{
+    background-color: #a53d3d;
+    border-color: #a53d3d;
+    color: white;
+  }
+  .custom_color:hover{
+    background-color: #974444;
+    border-color: #974444;
+    color: white;
+  }
+  
+  .custom_color_input:focus{
+    box-shadow: rgba(116, 102, 41, 0.158) 2px 2px 2px 0px;
+    border-color: #A29787;
+  }
+
+  .nav_perso{
+    font-weight: bolder;
+    background-color: #6b3f26!important;
+    color: white!important;
+    margin-bottom: 3em;
+  }
+  .nav_perso a{
+    padding: 0.2em 1.2em;
+    color: white!important;
+  }
+  .nav_perso li{
+    background-color: #4f2f1c!important;
+    padding: 0.2em 1.2em;
+    margin: 0.2em 0.4em;
+    color: white!important;
+    border-radius: 50px;
+  }
+  .nav_perso li:hover{
+    background-color: #332116!important;
+  }

@@ -33,3 +33,8 @@
   justify-content: center;
   align-items: center;
 }
+
+.tableBody th {
+  width: auto !important;
+  
+}

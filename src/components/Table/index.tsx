@@ -237,13 +237,13 @@ export const TableConstructor: React.FC<props> = (props) => {
       </div>
       <div className="dataTable-bottom p-2">
         <div className="dataTable-info">
-          {"Motre " +
+          {"Affiche " +
             (page * valuNumbur - valuNumbur + 1) +
             " à " +
             Math.min(page * valuNumbur, items.length) +
             " sur " +
             items.length +
-            " données"}
+            " livres"}
         </div>
         <nav className="dataTable-pagination">
           {HorizontalPagination(items.length, valuNumbur, page, setPage, tri)}
