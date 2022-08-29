@@ -3,7 +3,7 @@ import { book } from "../interfaces/book";
 import { category } from "../interfaces/category";
 
 export const variant: string = "info";
-export const APIUrl: string = "https://virtserver.swaggerhub.com/fenohasinalala/library/1.0.0";
+export const APIUrl: string = "http://localhost:8080";
 export const ProjectUrl: string = "http://localhost:3000";
 export const backgroundColor: string = "bg-"+variant;
 

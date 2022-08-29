@@ -95,7 +95,7 @@ export const TableConstructor: React.FC<props> = (props) => {
   useEffect(() => {
     setActivLoading(true)
     axios({
-      url: APIUrl+"/books"+"?"+"page="+(page-1)+"&page_size="+valuNumbur,
+      url: APIUrl+"/books"+"?"+"page="+(page)+"&page_size="+valuNumbur,
     })
       .then((response) => {
         setDataBook(response.data);
